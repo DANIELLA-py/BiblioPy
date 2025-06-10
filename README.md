@@ -1,6 +1,6 @@
 #catalogue de livres
 
-petit programme python pour gérer un catalogue de livres ( ajout,suppression , modification , recherche,tri ) avec stockage dans un fichier csv
+petit programme python pour gérer un catalogue de livres ( ajout,suppression , modification , recherche,tri ) avec stockage dans un fichier csv ou json
 
 ## fonctionalité 
 
