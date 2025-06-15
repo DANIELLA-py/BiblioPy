@@ -48,9 +48,22 @@ def modifier_livre(livres, id_livre, titre=None, auteur=None):
             if titre is not None:
                 livre['titre'] = titre
             if auteur is not None:
-                livre['auteur'] = auteur
+                 livre['auteur'] = auteur
             break
-    # Sauvegarder les modifications
+def afficher_livres():
+    for l in livres :
+        print(f"ID: {l['id']}, Titre: {l['titre']}, Auteur: {l['auteur']}")
+def initialiser_gestionnaire(format="json"):
+    if format == "csv":
+         livres = charger_livres_csv(livres)
+    else:
+        livres = charger_livres_json(livres)
+    import atexit
+    if format == "csv":
+        atexit.register(sauvegarder_livres_csv, livres)
+    else:
+        atexit.register(sauvegarder_livres_json, livres)
+    # Sauvegarder les modification
     sauvegarder_livres_json(livres)
     sauvegarder_livres_csv(livres)
 # Exemple d'utilisation
@@ -59,6 +72,4 @@ livres = charger_livres_json()
 ajouter_livre(livres, "Le Petit Prince", "Antoine de Saint-Exupéry")
 supprimer_livre(livres, 1)
 modifier_livre(livres, 2, titre="Le Petit Prince Modifié", auteur="Antoine de Saint-Exupéry Modifié")
-
-    
-
+afficher_livres()
